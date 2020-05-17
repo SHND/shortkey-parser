@@ -1,0 +1,18 @@
+# editor
+.vscode/
+.coverage/
+
+# source
+src/
+test/
+
+# tools
+.gitignore
+.eslintrc.json
+.prettierrc.json
+.travis.yml
+.coveralls.yml
+coverage/
+.nycrc
+.nyc_output/
+tsconfig.json

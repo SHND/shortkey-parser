@@ -1,0 +1,45 @@
+{
+  "name": "shortkey-parser",
+  "version": "1.0.0",
+  "description": "Keyboard shortkey parser.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "test": "cross-env TS_NODE_FILES=true mocha --exit --require ts-node/register --reporter spec --colors test/*.test.ts test/**/*.test.ts",
+    "coverage": "nyc npm run test",
+    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "publish": "np"
+  },
+  "keywords": [
+    "shortkey",
+    "shortcut",
+    "keyboard",
+    "parser"
+  ],
+  "author": "Sahand Javid <sahand.javid@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SHND/shortkey-parser"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.2.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.7",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
