@@ -13,6 +13,11 @@ export class ShortkeySequence {
         this.validate(shortkeys)
     }
 
+    private validate(keyGroups: Shortkey[]): void {
+        if (!keyGroups) throw Error(SHORTKEY_NULL);
+        if (keyGroups.length === 0) throw Error(SHORTKEY_LENGTH_ZERO);
+    }
+
     public size(): number {
         return this.shortkeys.length;
     }
@@ -21,9 +26,23 @@ export class ShortkeySequence {
         return this.shortkeys.map(shortkey => shortkey.toJSON());
     }
 
-    private validate(keyGroups: Shortkey[]): void {
-        if (!keyGroups) throw Error(SHORTKEY_NULL);
-        if (keyGroups.length === 0) throw Error(SHORTKEY_LENGTH_ZERO);
+    public toString(): string {
+        let output: any = [];
+        const json = this.toJSON();
+
+        json.forEach(shortkey => {
+            let shortkeyOutput: any = [];
+            shortkey.forEach(keygroup => {
+                if (keygroup.length === 1) {
+                    shortkeyOutput.push(keygroup[0].code);
+                } else {
+                    shortkeyOutput.push(`[${keygroup.map(keymap => keymap.code).join('|')}]`);
+                }
+            });
+            output.push(shortkeyOutput.join('+'));
+        })
+
+        return output.join(',');
     }
 
     public static from(str: string) {

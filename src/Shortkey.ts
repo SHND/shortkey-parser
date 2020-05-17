@@ -16,14 +16,6 @@ export class Shortkey {
         this.keyGroups = keyGroups;
     }
 
-    public size(): number {
-        return this.keyGroups.length;
-    }
-
-    public toJSON(): Array<Array<Record<string, KeyType>>> {
-        return this.keyGroups.map(keygroup => keygroup.toJSON());
-    }
-
     private validate(keyGroups: KeyGroup[]): void {
         if (!keyGroups) throw Error(KEYGROUP_NULL);
         if (keyGroups.length === 0) throw Error(KEYGROUP_LENGTH_ZERO);
@@ -42,6 +34,14 @@ export class Shortkey {
 
             return acc;
         }, {});
+    }
+
+    public size(): number {
+        return this.keyGroups.length;
+    }
+
+    public toJSON(): Array<Array<Record<string, KeyType>>> {
+        return this.keyGroups.map(keygroup => keygroup.toJSON());
     }
 
     public static from(str: string) {
