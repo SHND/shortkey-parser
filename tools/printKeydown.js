@@ -8,4 +8,5 @@ document.addEventListener('keydown', (event) => {
 }`
 
     console.log(keymap)
+    event.preventDefault();
 })
