@@ -22,6 +22,24 @@ describe("KeyGroup Class", () => {
         );
     });
 
+    it('KeyGroup with single key e.g. a using from', () => {
+        const keygroup = KeyGroup.from('a')
+
+        expect(keygroup.size()).equals(1);
+
+        expect(keygroup.toJSON()).deep.equal(
+            [
+                {
+                    which: 65,
+                    keyCode: 65,
+                    code: 'KeyA',
+                    key: 'a',
+                    location: KeyLocation.GENERAL_KEY,
+                }
+            ]
+        );
+    });
+
     it('KeyGroup with multiple keys e.g. alt', () => {
         const keygroup = new KeyGroup('alt');
 
@@ -68,4 +86,13 @@ describe("KeyGroup Class", () => {
             expect(task).not.throws(Error);
         }
     });
+
+    it('KeyGroup isMatchEvent matching', () => {
+        const keygroup = new KeyGroup('a');
+        // const keyEvent = new KeyboardEvent('a');
+
+
+
+        console.log(KeyboardEvent)
+    })
 })

@@ -25,8 +25,42 @@ describe("Shortkey Class", () => {
         )
     });
 
-    it('Shortkey with single key "a" in quotes', () => {
+    it('Shortkey with single key "a" in single quotes', () => {
         const shortkey = Shortkey.from("'a'");
+
+        expect(shortkey.size()).equals(1);
+
+        expect(shortkey.toJSON()).deep.equals(
+            [
+                KeyMaps.a
+            ]
+        )
+    });
+
+    it('Shortkey with single key "\'" in double quotes', () => {
+        const shortkey = Shortkey.from("\"'\"");
+
+        expect(shortkey.size()).equals(1);
+
+        expect(shortkey.toJSON()).deep.equals(
+            [
+                KeyMaps.quote
+            ]
+        )
+    });
+
+    it('Shortkey with single key \'"\' in single quotes', () => {
+
+        const task = () => {
+            Shortkey.from('\'"\'');
+        }
+
+        // double quote is not a keyboard key, but single quote
+        expect(task).throws(Error, 'KeyMaps for """ not found.');
+    });
+
+    it('Shortkey with single key "a" in double quotes', () => {
+        const shortkey = Shortkey.from('"a"');
 
         expect(shortkey.size()).equals(1);
 
@@ -148,12 +182,33 @@ describe("Shortkey Class", () => {
         expect(task).throws(Error, 'KeyMaps for "abc" not found.');
     });
 
+    it('Shortkey with two non-modifier keygroups "a+b"', () => {
+        const shortkey = Shortkey.from('a+b');
+
+        expect(shortkey.size()).equals(2);
+
+        expect(shortkey.toJSON()).deep.equals(
+            [
+                KeyMaps.a,
+                KeyMaps.b
+            ]
+        )
+    });
+
     it('Shortkey with two non-modifier keygroups "a+a" should error', () => {
         const task = () => {
             Shortkey.from('a+a');
         }
 
-        expect(task).throws(Error, 'Shortkey cannot contain more than one non-modifier');
+        expect(task).throws(Error, 'Shortkey cannot contain more than one same key.');
+    });
+
+    it('Shortkey with two non-modifier keygroups "alt+ralt" should error', () => {
+        const task = () => {
+            Shortkey.from('alt+ralt');
+        }
+
+        expect(task).throws(Error, 'Shortkey cannot contain more than one same key.');
     });
 
     it('Shortkey with two keygroups "ralt+a"', () => {
@@ -173,11 +228,17 @@ describe("Shortkey Class", () => {
     });
 
     it('Shortkey with two keygroups with same modifier "ralt+lalt+a"', () => {
-        const task = () => {
-            Shortkey.from('ralt+lalt+a');
-        }
+        const shortkey = Shortkey.from('ralt+lalt+a');
 
-        expect(task).throws(Error, 'Shortkey cannot contain more than one same modifier. (use alias instead)');
+        expect(shortkey.size()).equals(3);
+
+        expect(shortkey.toJSON()).deep.equals(
+            [
+                KeyMaps.ralt,
+                KeyMaps.lalt,
+                KeyMaps.a
+            ]
+        )
     });
 
     
