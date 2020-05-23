@@ -9,10 +9,10 @@
     "declaration": true,
     "strict": true,
     "lib": [
-      "es2019"
+      "es2019",
+      "DOM"
     ]
   },
-  
   "files": ["src/index.ts"],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts", "dist"]
