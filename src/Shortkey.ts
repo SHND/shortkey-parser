@@ -4,8 +4,7 @@ import { KeyLocation } from './KeyLocation';
 
 const KEYGROUP_NULL = 'Shortkey keyGroups cannot be null.';
 const KEYGROUP_LENGTH_ZERO = 'Shortkey keyGroups cannot be empty.';
-const KEYGROUP_MORE_THAN_ONE_NON_MODIFIER = 'Shortkey cannot contain more than one non-modifier.';
-const KEYGROUP_MORE_THAN_ONE_SAME_MODIFIER = 'Shortkey cannot contain more than one same modifier. (use alias instead)';
+const KEYGROUP_MORE_THAN_ONE_SAME_KEY = 'Shortkey cannot contain more than one same key.';
 
 export class Shortkey {
     private keyGroups: KeyGroup[];
@@ -21,16 +20,18 @@ export class Shortkey {
         if (keyGroups.length === 0) throw Error(KEYGROUP_LENGTH_ZERO);
 
         const json = [ ...keyGroups.map(keygroup => keygroup.toJSON()) ];
-        const notModifiers = json.filter(shortkey => shortkey[0].location === KeyLocation.GENERAL_KEY || shortkey[0].location === KeyLocation.NUMPAD);
-
-        if (notModifiers.length > 1) throw Error (KEYGROUP_MORE_THAN_ONE_NON_MODIFIER);
 
         json.reduce((acc, cur) => {
-            if (acc[cur[0].keyCode]) {
-                throw Error(KEYGROUP_MORE_THAN_ONE_SAME_MODIFIER);
-            }
 
-            acc[cur[0].keyCode] = cur;
+            cur.forEach((key: KeyType) => {
+                const dictKey = `${key.location}:${key.keyCode}`;
+
+                if (acc[dictKey]) {
+                    throw Error(KEYGROUP_MORE_THAN_ONE_SAME_KEY);
+                }
+
+                acc[dictKey] = cur;
+            });
 
             return acc;
         }, {});
