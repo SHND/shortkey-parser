@@ -22,6 +22,21 @@ export class ShortkeySequence {
         return this.shortkeys.length;
     }
 
+    public get(n: number): Shortkey {
+        if (n < 0 || n >= this.size())
+            throw Error("Out of range");
+
+        return this.shortkeys[n];
+    }
+    
+    public first(): Shortkey {
+        return this.get(0);
+    }
+
+    public last(): Shortkey {
+        return this.get(this.size() - 1);
+    }
+
     public toJSON(): Array<Array<Array<Record<string, KeyType>>>> {
         return this.shortkeys.map(shortkey => shortkey.toJSON());
     }
