@@ -970,6 +970,9 @@ KEY_MAPS['esc'] = [...KEY_MAPS.escape];
 // BACKQUOTE
 KEY_MAPS['backtick'] = [...KEY_MAPS.backquote];
 
+// BACKQUOTE
+KEY_MAPS["'"] = [...KEY_MAPS.quote];
+
 // EQUAL
 KEY_MAPS['='] = [...KEY_MAPS.equal];
 
