@@ -14,7 +14,6 @@ export class ShortkeySequence {
     }
 
     private validate(keyGroups: Shortkey[]): void {
-        if (!keyGroups) throw Error(SHORTKEY_NULL);
         if (keyGroups.length === 0) throw Error(SHORTKEY_LENGTH_ZERO);
     }
 

@@ -2,7 +2,6 @@ import { KeyGroup } from './KeyGroup';
 import { KeyMaps, KeyType } from './KeyMaps';
 import { KeyLocation } from './KeyLocation';
 
-const KEYGROUP_NULL = 'Shortkey keyGroups cannot be null.';
 const KEYGROUP_LENGTH_ZERO = 'Shortkey keyGroups cannot be empty.';
 const KEYGROUP_MORE_THAN_ONE_SAME_KEY = 'Shortkey cannot contain more than one same key.';
 
@@ -16,7 +15,6 @@ export class Shortkey {
     }
 
     private validate(keyGroups: KeyGroup[]): void {
-        if (!keyGroups) throw Error(KEYGROUP_NULL);
         if (keyGroups.length === 0) throw Error(KEYGROUP_LENGTH_ZERO);
 
         const json = [ ...keyGroups.map(keygroup => keygroup.toJSON()) ];
