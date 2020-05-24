@@ -17,7 +17,7 @@ npm install shortkey-parser
 shortkey-parser is exposing a parse method, which can be used to parse shortkey strings.
 
 ```javascript
-import { parse } from 'shortkey-parser';
+const { parse } = require('shortkey-parser');
 
 const shortkeys = parse('ctrl+k, a');
 
@@ -80,7 +80,7 @@ KeyGroups are groups of keyboard keys. Each Key has its own group and some keys 
 **KeyGroup** has methods below:
 - **size()**: number of Keys in the KeyGroup.
 - **toJSON()**: Json representation of the KeyGroup.
-- **from(str)**: static method which grabs an string (representing the key or alias) and returns a KeyGroup.
+- **from(str)**: static method which gets a string (representing the key or alias) and returns a KeyGroup.
 
 ### Shortkey
 
@@ -146,14 +146,14 @@ In our convention, you are not tied to modifiers like alt and only one general k
 **Shortkey** has methods below:
 - **size()**: number of KeyGroups in the Shortkey.
 - **toJSON()**: Json representation of the Shortkey.
-- **from(str)**: static method which grabs an string representing a shortkey and returns a Shortkey.
+- **from(str)**: static method which gets a string representing a shortkey and returns a Shortkey.
 
 ### ShortkeySequence
 
 ShortkeySequences are list of Shortkeys separated by ",". Here is an example of **ctrl+k, d** Shortkey.
 
 ```javascript
-// "alt+d" Shortkey
+// "ctrl+k, d" ShortkeySequence
 [
 
     [
@@ -209,7 +209,7 @@ ShortkeySequences are list of Shortkeys separated by ",". Here is an example of 
 - **size()**: number of Shortkeys in the ShortkeySequence.
 - **toJSON()**: Json representation of the ShortkeySequence.
 - **toString()**: String representation of the ShortkeySequence. (This is only for debugging and cannot be passed to ShortkeySequence for parsing again)
-- **from(str)**: static method which grabs an string representing a shortkeySequence and returns a ShortkeySequence.
+- **from(str)**: static method which gets a string representing a shortkeySequence and returns a ShortkeySequence.
 
 ## Special Cases
 ### Whitespaces
@@ -218,7 +218,7 @@ All whitespaces are ignored.
 
 ### Special Characters
 
-You can put special characters inside quotes or double quotes. Also remember that almost always in this cases there is an equivalent alias.
+You can put special characters inside quotes or double quotes. Also remember that always in this cases there is an equivalent alias.
 
 ```
 alt+'+'
@@ -226,3 +226,6 @@ alt+plus
 ```
 
 Any Key can be put inside a quote or double quote. If you are not sure you need one, you can always put it in quotes or use an alias.
+
+## Keys and Aliases
+
