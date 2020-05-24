@@ -147,4 +147,88 @@ describe("ShortkeySequence Class", () => {
             ]
         );
     });
+
+    it('ShortkeySequence "alt+"+""', () => {
+        const shortkeysequence = ShortkeySequence.from('alt+"+",b');
+        expect(shortkeysequence.size()).equals(2);
+
+        expect(shortkeysequence.toJSON()).deep.equal(
+            [
+                [
+                    KeyMaps.alt,
+                    KeyMaps.plus,
+                ],
+                [
+                    KeyMaps.b
+                ]
+            ]
+        );
+    });
+
+    it('ShortkeySequence "alt+"\'""', () => {
+        const shortkeysequence = ShortkeySequence.from('alt+"\'",b');
+        expect(shortkeysequence.size()).equals(2);
+
+        expect(shortkeysequence.toJSON()).deep.equal(
+            [
+                [
+                    KeyMaps.alt,
+                    KeyMaps.quote,
+                ],
+                [
+                    KeyMaps.b
+                ]
+            ]
+        );
+    });
+
+    it('ShortkeySequence "alt+\'"\'', () => {
+        const task = () => {
+            ShortkeySequence.from('alt+\'"\',b');
+        }
+        
+        expect(task).throws(Error, 'KeyMaps for """ not found.')
+    });
+
+    it('ShortkeySequence get method for "alt+a,b"', () => {
+        const shortkeysequence = ShortkeySequence.from('alt+a,b');
+
+        expect(shortkeysequence.get(0).toJSON()).deep.equals([
+            KeyMaps.alt,
+            KeyMaps.a,
+        ]);
+
+        expect(shortkeysequence.get(1).toJSON()).deep.equals([
+            KeyMaps.b
+        ]);
+
+        const task1 = () => {
+            shortkeysequence.get(2);
+        }
+
+        expect(task1).throws(Error, 'Out of range');
+
+        const task2 = () => {
+            shortkeysequence.get(-1);
+        }
+
+        expect(task2).throws(Error, 'Out of range');
+    });
+
+    it('ShortkeySequence first method for "alt+a,b"', () => {
+        const shortkeysequence = ShortkeySequence.from('alt+a,b');
+
+        expect(shortkeysequence.first().toJSON()).deep.equals([
+            KeyMaps.alt,
+            KeyMaps.a,
+        ]);
+    });
+
+    it('ShortkeySequence lst method for "alt+a,b"', () => {
+        const shortkeysequence = ShortkeySequence.from('alt+a,b');
+
+        expect(shortkeysequence.last().toJSON()).deep.equals([
+            KeyMaps.b
+        ]);
+    });
 })

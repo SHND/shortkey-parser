@@ -5,6 +5,14 @@ import { KeyMaps } from '../src/KeyMaps';
 // import { KeyMaps } from '../src/KeyMaps';
 
 describe("Shortkey Class", () => {
+    it('Shortkey with empty key', () => {
+        const task = () => {    
+            Shortkey.from('');
+        }
+
+        expect(task).throws(Error, 'Shortkey keyGroups cannot be empty.');
+    });
+
     it('Shortkey with single key "a"', () => {
         const shortkey = Shortkey.from('a');
 
@@ -37,6 +45,14 @@ describe("Shortkey Class", () => {
         )
     });
 
+    it('Shortkey ends with single key "a""', () => {
+        const task = () => {
+            Shortkey.from("a\"");
+        }
+
+        expect(task).throws(Error, "Parsing error")
+    });
+
     it('Shortkey with single key "\'" in double quotes', () => {
         const shortkey = Shortkey.from("\"'\"");
 
@@ -47,6 +63,14 @@ describe("Shortkey Class", () => {
                 KeyMaps.quote
             ]
         )
+    });
+
+    it('Shortkey ends with single key "a\'"', () => {
+        const task = () => {
+            Shortkey.from("a\'");
+        }
+
+        expect(task).throws(Error, "Parsing error")
     });
 
     it('Shortkey with single key \'"\' in single quotes', () => {

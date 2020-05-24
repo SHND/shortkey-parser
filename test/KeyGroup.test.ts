@@ -89,10 +89,136 @@ describe("KeyGroup Class", () => {
 
     it('KeyGroup isMatchEvent matching', () => {
         const keygroup = new KeyGroup('a');
-        // const keyEvent = new KeyboardEvent('a');
 
+        /*
+            which: 65,
+            keyCode: 65,
+            code: 'KeyA',
+            key: 'a',
+            location: KeyLocation.GENERAL_KEY,
+        */
 
+        const keyEvent = new KeyboardEvent('keydown', {
+            code: 'KeyA',
+            key: 'a',
+            location: KeyLocation.GENERAL_KEY
+        });
 
-        console.log(KeyboardEvent)
-    })
+        expect(keygroup.isMatchEvent(keyEvent)).equal(true);
+    });
+
+    it('KeyGroup isMatchEvent matching "a"', () => {
+        const keygroup = new KeyGroup('a');
+
+        /*
+            which: 65,
+            keyCode: 65,
+            code: 'KeyA',
+            key: 'a',
+            location: KeyLocation.GENERAL_KEY,
+        */
+
+        const keyEvent = new KeyboardEvent('keydown', {
+            code: 'KeyA',
+            key: 'a',
+            location: KeyLocation.GENERAL_KEY
+        });
+
+        expect(keygroup.isMatchEvent(keyEvent)).equal(true);
+    });
+
+    it('KeyGroup isMatchEvent non-matching "a"', () => {
+        const keygroup = new KeyGroup('a');
+
+        /*
+            which: 65,
+            keyCode: 65,
+            code: 'KeyA',
+            key: 'a',
+            location: KeyLocation.GENERAL_KEY,
+        */
+
+        const keyEvent = new KeyboardEvent('keydown', {
+            code: 'KeyB',
+            key: 'b',
+            location: KeyLocation.GENERAL_KEY
+        });
+
+        expect(keygroup.isMatchEvent(keyEvent)).equal(false);
+    });
+
+    it('KeyGroup isMatchEvent matching "alt"', () => {
+
+        const keygroup = new KeyGroup('alt');
+
+        /*
+            'left-alt': [
+                {
+                    which: 18,
+                    keyCode: 18,
+                    code: 'AltLeft',
+                    key: 'Alt',
+                    location: KeyLocation.LEFT_SIDE_MODIFIER_KEY,
+                },
+            ],
+            'right-alt': [
+                {
+                    which: 18,
+                    keyCode: 18,
+                    code: 'AltRight',
+                    key: 'Alt',
+                    location: KeyLocation.RIGHT_SIDE_MODIFIER_KEY,
+                },
+            ],
+        */
+
+        const keyEvent1 = new KeyboardEvent('keydown', {
+            code: 'AltLeft',
+            key: 'Alt',
+            location: KeyLocation.LEFT_SIDE_MODIFIER_KEY
+        });
+
+        const keyEvent2 = new KeyboardEvent('keydown', {
+            code: 'AltRight',
+            key: 'Alt',
+            location: KeyLocation.RIGHT_SIDE_MODIFIER_KEY
+        });
+
+        expect(keygroup.isMatchEvent(keyEvent1)).equal(true);
+        expect(keygroup.isMatchEvent(keyEvent2)).equal(true);
+    });
+
+    it('KeyGroup isMatchEvent non-matching "alt"', () => {
+
+        const keygroup = new KeyGroup('alt');
+
+        /*
+            'left-alt': [
+                {
+                    which: 18,
+                    keyCode: 18,
+                    code: 'AltLeft',
+                    key: 'Alt',
+                    location: KeyLocation.LEFT_SIDE_MODIFIER_KEY,
+                },
+            ],
+            'right-alt': [
+                {
+                    which: 18,
+                    keyCode: 18,
+                    code: 'AltRight',
+                    key: 'Alt',
+                    location: KeyLocation.RIGHT_SIDE_MODIFIER_KEY,
+                },
+            ],
+        */
+
+        const keyEvent = new KeyboardEvent('keydown', {
+            code: 'KeyB',
+            key: 'b',
+            location: KeyLocation.GENERAL_KEY
+        });
+
+        expect(keygroup.isMatchEvent(keyEvent)).equal(false);
+    });
 })
