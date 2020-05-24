@@ -25,15 +25,15 @@ export class KeyGroup {
         return JSON.parse(JSON.stringify(this.keys));
     }
 
-    // appearedIn(event: KeyboardEvent) {
-    //     const index = this.keys.findIndex(
-    //         (key) =>
-    //             key.code === event.code &&
-    //             key.key === event.key &&
-    //             key.keyCode === event.keyCode &&
-    //             key.location === event.location &&
-    //             key.which === event.which
-    //     );
-    //     return index >= 0;
-    // }
+    isMatchEvent(event: KeyboardEvent): boolean {
+        const index = this.keys.findIndex(
+            (key) =>
+                key.code === event.code &&
+                key.key === event.key &&
+                // key.keyCode === event.keyCode
+                key.location === event.location
+                // key.which === event.which
+        );
+        return index >= 0;
+    }
 }
