@@ -31,7 +31,7 @@ const json = shortkeys.toJSON();
 
 Key represents a single key on the keyboard. It has a type of **KeyType** which is represented as a most basic object in *shortkey-parser*.
 
-Keys are represented in a flat object. As an example this is a *A* key on the keyboard:
+Keys are represented in a flat object. As an example, this is a *A* key on the keyboard:
 ```javascript
 // key A on keyboard
 {
@@ -39,7 +39,7 @@ Keys are represented in a flat object. As an example this is a *A* key on the ke
     keyCode: 65,
     code: 'KeyA',
     key: 'a',
-    location: KeyLocation.GENERAL_KEY,
+    location: 0,
 },
 ```
 
@@ -54,7 +54,7 @@ KeyGroups are groups of keyboard keys. Each Key has its own group and some keys 
         keyCode: 18,
         code: 'AltLeft',
         key: 'Alt',
-        location: KeyLocation.LEFT_SIDE_MODIFIER_KEY,
+        location: 1,
     },
 ],
 
@@ -65,14 +65,14 @@ KeyGroups are groups of keyboard keys. Each Key has its own group and some keys 
         keyCode: 18,
         code: 'AltLeft',
         key: 'Alt',
-        location: KeyLocation.LEFT_SIDE_MODIFIER_KEY,
+        location: 1,
     },
     {
         which: 18,
         keyCode: 18,
         code: 'AltRight',
         key: 'Alt',
-        location: KeyLocation.RIGHT_SIDE_MODIFIER_KEY,
+        location: 2,
     },
 ]
 ```
@@ -95,14 +95,14 @@ Shortkeys are combination of KeyGroups separated by "+". Here is an example of *
             keyCode: 18,
             code: 'AltLeft',
             key: 'Alt',
-            location: KeyLocation.LEFT_SIDE_MODIFIER_KEY,
+            location: 1,
         },
         {
             which: 18,
             keyCode: 18,
             code: 'AltRight',
             key: 'Alt',
-            location: KeyLocation.RIGHT_SIDE_MODIFIER_KEY,
+            location: 2,
         },
     ],
     [
@@ -111,7 +111,7 @@ Shortkeys are combination of KeyGroups separated by "+". Here is an example of *
             keyCode: 68,
             code: 'KeyD',
             key: 'd',
-            location: KeyLocation.GENERAL_KEY,
+            location: 0,
         },
     ]
 ]
@@ -128,7 +128,7 @@ In our convention, you are not tied to modifiers like alt and only one general k
             keyCode: 65,
             code: 'KeyA',
             key: 'a',
-            location: KeyLocation.GENERAL_KEY,
+            location: 0,
         },
     ],
     [
@@ -137,7 +137,7 @@ In our convention, you are not tied to modifiers like alt and only one general k
             keyCode: 68,
             code: 'KeyD',
             key: 'd',
-            location: KeyLocation.GENERAL_KEY,
+            location: 0,
         },
     ]
 ]
@@ -164,7 +164,7 @@ ShortkeySequences are list of Shortkeys separated by ",". Here is an example of 
                     keyCode: 17,
                     code: 'ControlLeft',
                     key: 'Control',
-                    location: KeyLocation.LEFT_SIDE_MODIFIER_KEY,
+                    location: 1,
                 },
             ],
             [
@@ -173,7 +173,7 @@ ShortkeySequences are list of Shortkeys separated by ",". Here is an example of 
                     keyCode: 17,
                     code: 'ControlRight',
                     key: 'Control',
-                    location: KeyLocation.RIGHT_SIDE_MODIFIER_KEY,
+                    location: 2,
                 },
             ]
         ],
@@ -183,7 +183,7 @@ ShortkeySequences are list of Shortkeys separated by ",". Here is an example of 
                 keyCode: 75,
                 code: 'KeyK',
                 key: 'k',
-                location: KeyLocation.GENERAL_KEY,
+                location: 0,
             },
         ]
     ],
@@ -194,7 +194,7 @@ ShortkeySequences are list of Shortkeys separated by ",". Here is an example of 
                 keyCode: 68,
                 code: 'KeyD',
                 key: 'd',
-                location: KeyLocation.GENERAL_KEY,
+                location: 0,
             },
         ]
     ]
@@ -208,13 +208,13 @@ ShortkeySequences are list of Shortkeys separated by ",". Here is an example of 
 - **get(n)**: returns the nth Shortkey in the ShortkeySequence.
 - **size()**: number of Shortkeys in the ShortkeySequence.
 - **toJSON()**: Json representation of the ShortkeySequence.
-- **toString()**: String representation of the ShortkeySequence. This is only for testing and cannot be passed to ShortkeySequence for parsing again.
+- **toString()**: String representation of the ShortkeySequence. (This is only for debugging and cannot be passed to ShortkeySequence for parsing again)
 - **from(str)**: static method which grabs an string representing a shortkeySequence and returns a ShortkeySequence.
 
 ## Special Cases
 ### Whitespaces
 
-All whitespaces are ignored
+All whitespaces are ignored.
 
 ### Special Characters
 
