@@ -1,6 +1,6 @@
 {
   "name": "shortkey-parser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Keyboard shortkey parser for JavaScript.",
   "homepage": "https://shnd.github.io/shortkey-parser",
   "main": "dist/index.js",
