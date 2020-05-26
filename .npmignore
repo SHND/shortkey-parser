@@ -5,6 +5,8 @@
 # source
 src/
 test/
+docs/
+.sass-cache/
 
 # tools
 .gitignore
