@@ -229,3 +229,4 @@ Any Key can be put inside a quote or double quote. If you are not sure you need 
 
 ## Keys and Aliases
 
+Please refer to [Keys and Aliases](https://shnd.github.io/shortkey-parser/#keys-and-aliases).
