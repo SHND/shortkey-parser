@@ -13,7 +13,7 @@
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "publish": "np",
     "jekyll:start": "cross-env BUNDLE_GEMFILE='./docs/Gemfile' bundle exec jekyll serve -w -o -s ./docs -d ./docs/_site",
-    "jekyll:build": "cross-env BUNDLE_GEMFILE='./docs/Gemfile' bundle exec jekyll build -d ./docs/_site"
+    "jekyll:build": "cross-env BUNDLE_GEMFILE='./docs/Gemfile' bundle exec jekyll build -s ./docs -d ./docs/_site"
   },
   "keywords": [
     "shortkey",
