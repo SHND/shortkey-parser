@@ -11,7 +11,7 @@
     "test": "cross-env TS_NODE_FILES=true mocha --exit --require ts-node/register -r jsdom-global/register --reporter spec --colors test/*.test.ts test/**/*.test.ts",
     "coverage": "nyc npm run test",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "publish": "np",
+    "publish": "np --contents=dist",
     "jekyll:start": "cross-env BUNDLE_GEMFILE='./docs/Gemfile' bundle exec jekyll serve -w -o -s ./docs -d ./docs/_site",
     "jekyll:build": "cross-env BUNDLE_GEMFILE='./docs/Gemfile' bundle exec jekyll build -s ./docs -d ./docs/_site"
   },
