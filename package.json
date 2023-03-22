@@ -41,7 +41,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "jsdom": "16.2.2",
     "jsdom-global": "3.0.2",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "np": "^7.6.0",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
